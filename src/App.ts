@@ -31,7 +31,14 @@ class App {
         })
 
         router.post('/script/:user/:script', (req, res) => {
-            const { script, user } = req.params
+            const JS_SECRET = process.env.ENV_VARIABLE
+            const { script, user, secret } = req.params
+            if (secret !== JS_SECRET) {
+                console.log("Bad secret!")
+                res.status(401)
+                res.send('Rejected')
+                return
+            }
             const body = req.body.script
             console.log("TEXT",body);
 
