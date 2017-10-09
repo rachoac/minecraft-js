@@ -31,7 +31,7 @@ class App {
         })
 
         router.post('/script/:user/:script', (req, res) => {
-            const JS_SECRET = process.env.ENV_VARIABLE
+            const JS_SECRET = process.env.JS_SECRET
             const { script, user, secret } = req.params
             if (secret !== JS_SECRET) {
                 console.log("Bad secret!")
