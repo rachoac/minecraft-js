@@ -32,7 +32,9 @@ class App {
 
         router.post('/script/:user/:script', (req, res) => {
             const JS_SECRET = process.env.JS_SECRET
-            const { script, user, secret } = req.params
+            const { secret } = req.query
+
+            const { script, user } = req.params
             if (secret !== JS_SECRET) {
                 console.log("Bad secret!")
                 res.status(401)
