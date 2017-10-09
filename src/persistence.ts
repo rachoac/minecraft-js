@@ -22,8 +22,7 @@ export class Persistence {
         if (!fs.existsSync(userDir)) {
             fs.mkdirSync(userDir)
         }
-        const toWrite = `var __REPLACED__ = function() { ${body} }`
-        fs.writeFileSync(`${userDir}/${script}`, toWrite)
+        fs.writeFileSync(`${userDir}/${script}`, body)
     }
 
 }
