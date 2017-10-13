@@ -41,7 +41,7 @@ class App {
                 res.send('Rejected')
                 return
             }
-            const body = Buffer.from(req.body.script, 'base64');
+            const body = Buffer.from(req.body.script, 'base64').toString()
             console.log("TEXT",body);
 
             res.send(this.persistence.saveScript(user, script, body))
