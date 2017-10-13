@@ -30,6 +30,10 @@ if [ ! -d "scripts/$1" ]; then
     mkdir "scripts/$1"
 fi
 
+if [ ! -e "scripts/$1/current.js" ]; then
+    touch "scripts/$1/current.js"
+fi
+
 SCRIPT_DIR=$(pwd)/scripts
 echo "Place your .js scripts in $SCRIPT_DIR/$1."
 
