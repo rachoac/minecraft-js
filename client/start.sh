@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   REFLEX_CMD="./reflex"
 elif [[ "$OSTYPE" == "darwin"* ]]; then

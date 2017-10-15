@@ -42,7 +42,10 @@ class App {
                 return
             }
             const raw = req.body.script.replace(' ', '+')
-            const body = Buffer.from(raw, 'base64').toString('ascii')
+            let body = Buffer.from(raw, 'base64').toString('ascii')
+            if (body.indexOf('/js ') === 0) {
+                body = body.split('/js ')[1]
+            }
             console.log("TEXT",body);
 
             res.send(this.persistence.saveScript(user, script, body))
