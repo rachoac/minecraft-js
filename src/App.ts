@@ -51,6 +51,27 @@ class App {
             res.send(this.persistence.saveScript(user, script, body))
         })
 
+        router.post('/plugin/:script', (req, res) => {
+            const JS_SECRET = process.env.JS_SECRET
+            const { secret } = req.query
+
+            const { script } = req.params
+            if (secret !== JS_SECRET) {
+                console.log("Bad secret!")
+                res.status(401)
+                res.send('Rejected')
+                return
+            }
+            const raw = req.body.script.replace(' ', '+')
+            let body = Buffer.from(raw, 'base64').toString('ascii')
+            if (body.indexOf('/js ') === 0) {
+                body = body.split('/js ')[1]
+            }
+            console.log("TEXT",body);
+
+            res.send(this.persistence.savePlugin(script, body))
+        })
+
         this.express.use('/', router)
     }
 }

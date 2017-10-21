@@ -25,4 +25,8 @@ export class Persistence {
         fs.writeFileSync(`${userDir}/${script}`, body)
     }
 
+    savePlugin(script, body) {
+        fs.writeFileSync(`~/minecraft-js/scriptcraft/plugins/custom/${script}`, body)
+    }
+
 }
