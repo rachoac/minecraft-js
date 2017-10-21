@@ -26,7 +26,9 @@ export class Persistence {
     }
 
     saveAsPlugin(user, script) {
-        fs.copy(`scripts/${user}/${script}`, `~/minecraft-js/scriptcraft/plugins/custom/${script}`, function (err) {
+        const SERVER_HOME = process.env.SERVER_HOME
+
+        fs.copy(`scripts/${user}/${script}`, `${SERVER_HOME}/plugins/custom/${script}`, function (err) {
             if (err)
                 return console.error(err)
         })
