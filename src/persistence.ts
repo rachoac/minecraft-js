@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import * as fs from 'fs-extra'
 
 export class Persistence {
     constructor() {
@@ -25,8 +25,11 @@ export class Persistence {
         fs.writeFileSync(`${userDir}/${script}`, body)
     }
 
-    savePlugin(script, body) {
-        fs.writeFileSync(`~/minecraft-js/scriptcraft/plugins/custom/${script}`, body)
+    saveAsPlugin(user, script) {
+        fs.copy(`scripts/${user}/${script}`, `~/minecraft-js/scriptcraft/plugins/custom/${script}`, function (err) {
+            if (err)
+                return console.error(err)
+        })
     }
 
 }
