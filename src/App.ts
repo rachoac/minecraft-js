@@ -51,7 +51,7 @@ class App {
             res.send(this.persistence.saveScript(user, script, body))
         })
 
-        router.post('/plugin/:user/:script', (req, res) => {
+        router.get('/plugin/:user/:script', (req, res) => {
             const JS_SECRET = process.env.JS_SECRET
             const { secret } = req.query
 
@@ -63,7 +63,8 @@ class App {
                 return
             }
 
-            res.send(this.persistence.saveAsPlugin(user, script))
+            this.persistence.saveAsPlugin(user, script)
+            res.send("done")
         })
 
         this.express.use('/', router)
